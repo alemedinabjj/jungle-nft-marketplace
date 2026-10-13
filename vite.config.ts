@@ -69,7 +69,14 @@ export default defineConfig({
     bootAfterFirstPaint(),
   ],
   resolve: {
-    alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+    alias: [
+      { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+      // Mock-only dependency diet: see src/mocks/vendor/tldts-lite.ts
+      {
+        find: /^tldts$/,
+        replacement: fileURLToPath(new URL('./src/mocks/vendor/tldts-lite.ts', import.meta.url)),
+      },
+    ],
   },
   build: {
     target: 'es2022',
