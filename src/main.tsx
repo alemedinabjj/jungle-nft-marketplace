@@ -1,19 +1,17 @@
-import { StrictMode, startTransition } from 'react'
-import { createRoot } from 'react-dom/client'
-import { AppProviders } from '@/app/providers/app-providers'
-import { createQueryClient } from '@/app/query-client'
-import { createAppRouter } from '@/app/router'
-import { env } from '@/shared/config/env'
-import { setRequestGate } from '@/shared/http'
+import { setRequestGate } from '@/shared/http/request-gate'
 import './index.css'
 
 /**
- * Boot order (performance-critical, see docs/adr/0003-non-blocking-mock-boot.md):
- * 1. kick off the mock worker without awaiting it;
- * 2. gate outgoing requests on that promise;
- * 3. render the shell immediately so the LCP never waits on MSW.
+ * Boot order (performance-critical — docs/adr/0003 and 0005):
+ * 1. the static shell is already painted (index.html) when this runs;
+ * 2. the mock worker starts without being awaited and gates outgoing requests;
+ * 3. the app graph is evaluated in a few separate tasks (yielding in between),
+ *    so no single long task blocks the main thread, then React takes over the shell.
  */
-if (env.VITE_ENABLE_MOCKS) {
+const mocksEnabled = import.meta.env.VITE_ENABLE_MOCKS === 'true'
+const yieldToMain = () => new Promise<void>((resolve) => setTimeout(resolve, 0))
+
+if (mocksEnabled) {
   const ready = import('@/mocks/browser').then(({ startMockWorker }) => startMockWorker())
   setRequestGate(ready)
   // Scenario panel: lazy, after the worker is up. Hidden under browser automation
@@ -29,18 +27,19 @@ if (env.VITE_ENABLE_MOCKS) {
   }
 }
 
-const queryClient = createQueryClient()
-const router = createAppRouter(queryClient)
+async function boot(): Promise<void> {
+  const rootElement = document.getElementById('root')
+  if (!rootElement) throw new Error('Root element #root not found')
+  // Typed env + contracts (Zod schemas) first, in their own task: fails fast on bad config.
+  await import('@/shared/config/env')
+  await yieldToMain()
+  await import('@/shared/contracts')
+  await yieldToMain()
+  await import('react-dom/client')
+  await yieldToMain()
+  const { startApp } = await import('@/app/bootstrap')
+  await yieldToMain()
+  await startApp(rootElement)
+}
 
-const rootElement = document.getElementById('root')
-if (!rootElement) throw new Error('Root element #root not found')
-
-// The static shell is already on screen, so the first render can be a transition:
-// React time-slices it instead of blocking the main thread in one long task.
-startTransition(() => {
-  createRoot(rootElement).render(
-    <StrictMode>
-      <AppProviders queryClient={queryClient} router={router} />
-    </StrictMode>,
-  )
-})
+void boot()
