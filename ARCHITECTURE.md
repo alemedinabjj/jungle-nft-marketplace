@@ -236,7 +236,7 @@ Meta: Lighthouse ≥ 90 / 95 / 95 / 90, mediana de 3 execuções. Números atuai
 | Roboto Mono self-hosted, WOFF2 com subset latin, `font-display: swap` e preload                                                                                       | Sem FOIT nem requisições externas                                                                                                                                        |
 | Formatadores `Intl` criados sob demanda                                                                                                                               | Nada caro no import                                                                                                                                                      |
 
-**Detalhe mobile em 87, abaixo de 90.** O LCP do detalhe é a arte do NFT, e a URL dela vem da API. Aqui a API é o MSW executando **no navegador**, então o LCP soma:
+**Detalhe mobile em 85, abaixo de 90.** O LCP do detalhe é a arte do NFT, e a URL dela vem da API. Aqui a API é o MSW executando **no navegador**, então o LCP soma:
 
 1. o download e a avaliação do backend simulado (≈60 KB gzip, entre MSW, fixtures, handlers e binding);
 2. o registro do service worker;
@@ -274,5 +274,5 @@ A alternativa avaliada foi derivar a URL da imagem do id do token (padrão comum
 - O backend é simulado no navegador: cada navegador tem seu próprio “servidor”, e os dados persistem só localmente.
 - Recuperação de senha, login social, páginas editoriais, atividade e estúdio do criador estão fora do escopo (aparecem desabilitados).
 - O upload de avatar é simulado: a imagem é reduzida e guardada como data URL no banco local.
-- O detalhe mobile fica em 87 no Lighthouse, abaixo de 90 (ver [Performance](#performance)).
+- O detalhe mobile fica em 85 no Lighthouse, abaixo de 90 (ver [Performance](#performance)).
 - As baselines visuais são a referência do runner Linux do CI. Em outros sistemas, diferenças de rasterização de fonte podem exigir `pnpm test:e2e:update` local.

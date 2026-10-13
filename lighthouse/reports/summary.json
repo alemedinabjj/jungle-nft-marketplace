@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T20:22:00.599Z",
+  "generatedAt": "2026-10-13T20:42:29.717Z",
   "runsPerPage": 3,
   "selection": "median run (lighthouse computeMedianRun: FCP + LCP closest to the median)",
   "environment": {
@@ -18,56 +18,56 @@
       "formFactor": "mobile",
       "median": {
         "scores": {
-          "performance": 95,
-          "accessibility": 96,
+          "performance": 97,
+          "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
-        "lcpMs": 1362,
-        "fcpMs": 837,
-        "tbtMs": 247,
+        "lcpMs": 1359,
+        "fcpMs": 759,
+        "tbtMs": 184,
         "cls": 0,
-        "speedIndexMs": 1401
+        "speedIndexMs": 1131
       },
       "runs": [
         {
           "scores": {
-            "performance": 91,
-            "accessibility": 96,
+            "performance": 97,
+            "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 1361,
-          "fcpMs": 761,
-          "tbtMs": 390,
+          "lcpMs": 1359,
+          "fcpMs": 759,
+          "tbtMs": 184,
           "cls": 0,
-          "speedIndexMs": 1028
+          "speedIndexMs": 1131
         },
         {
           "scores": {
-            "performance": 95,
-            "accessibility": 96,
+            "performance": 99,
+            "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 1362,
-          "fcpMs": 837,
-          "tbtMs": 247,
+          "lcpMs": 1375,
+          "fcpMs": 775,
+          "tbtMs": 129,
           "cls": 0,
-          "speedIndexMs": 1401
+          "speedIndexMs": 1246
         },
         {
           "scores": {
-            "performance": 96,
-            "accessibility": 96,
+            "performance": 99,
+            "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 1370,
-          "fcpMs": 845,
-          "tbtMs": 214,
+          "lcpMs": 1368,
+          "fcpMs": 768,
+          "tbtMs": 118,
           "cls": 0,
-          "speedIndexMs": 1401
+          "speedIndexMs": 1316
         }
       ]
     },
@@ -78,55 +78,55 @@
       "median": {
         "scores": {
           "performance": 100,
-          "accessibility": 97,
+          "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
-        "lcpMs": 504,
-        "fcpMs": 384,
+        "lcpMs": 380,
+        "fcpMs": 280,
         "tbtMs": 0,
         "cls": 0.0026,
-        "speedIndexMs": 497
+        "speedIndexMs": 469
       },
       "runs": [
         {
           "scores": {
             "performance": 100,
-            "accessibility": 97,
+            "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 504,
-          "fcpMs": 384,
+          "lcpMs": 650,
+          "fcpMs": 489,
           "tbtMs": 0,
           "cls": 0.0026,
-          "speedIndexMs": 497
+          "speedIndexMs": 611
         },
         {
           "scores": {
             "performance": 100,
-            "accessibility": 97,
+            "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 337,
-          "fcpMs": 217,
-          "tbtMs": 1,
+          "lcpMs": 340,
+          "fcpMs": 220,
+          "tbtMs": 2,
           "cls": 0.0026,
-          "speedIndexMs": 467
+          "speedIndexMs": 445
         },
         {
           "scores": {
             "performance": 100,
-            "accessibility": 97,
+            "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 323,
-          "fcpMs": 203,
+          "lcpMs": 380,
+          "fcpMs": 280,
           "tbtMs": 0,
           "cls": 0.0026,
-          "speedIndexMs": 409
+          "speedIndexMs": 469
         }
       ]
     },
@@ -136,30 +136,30 @@
       "formFactor": "mobile",
       "median": {
         "scores": {
-          "performance": 87,
+          "performance": 85,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
-        "lcpMs": 4101,
-        "fcpMs": 833,
-        "tbtMs": 47,
+        "lcpMs": 4000,
+        "fcpMs": 768,
+        "tbtMs": 170,
         "cls": 0,
-        "speedIndexMs": 1040
+        "speedIndexMs": 1009
       },
       "runs": [
         {
           "scores": {
-            "performance": 84,
+            "performance": 85,
             "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 4059,
-          "fcpMs": 761,
-          "tbtMs": 206,
+          "lcpMs": 4000,
+          "fcpMs": 768,
+          "tbtMs": 170,
           "cls": 0,
-          "speedIndexMs": 1042
+          "speedIndexMs": 1009
         },
         {
           "scores": {
@@ -168,24 +168,24 @@
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 4101,
-          "fcpMs": 833,
-          "tbtMs": 47,
+          "lcpMs": 3972,
+          "fcpMs": 767,
+          "tbtMs": 100,
           "cls": 0,
-          "speedIndexMs": 1040
+          "speedIndexMs": 981
         },
         {
           "scores": {
-            "performance": 88,
+            "performance": 85,
             "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 3871,
-          "fcpMs": 923,
-          "tbtMs": 84,
+          "lcpMs": 3989,
+          "fcpMs": 773,
+          "tbtMs": 184,
           "cls": 0,
-          "speedIndexMs": 1150
+          "speedIndexMs": 1027
         }
       ]
     },
@@ -195,30 +195,43 @@
       "formFactor": "desktop",
       "median": {
         "scores": {
-          "performance": 98,
+          "performance": 99,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
-        "lcpMs": 1123,
-        "fcpMs": 299,
+        "lcpMs": 841,
+        "fcpMs": 216,
         "tbtMs": 0,
         "cls": 0,
-        "speedIndexMs": 412
+        "speedIndexMs": 354
       },
       "runs": [
         {
           "scores": {
-            "performance": 97,
+            "performance": 99,
             "accessibility": 100,
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 1271,
-          "fcpMs": 348,
+          "lcpMs": 1044,
+          "fcpMs": 263,
           "tbtMs": 0,
           "cls": 0,
-          "speedIndexMs": 459
+          "speedIndexMs": 384
+        },
+        {
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "lcpMs": 815,
+          "fcpMs": 214,
+          "tbtMs": 0,
+          "cls": 0,
+          "speedIndexMs": 363
         },
         {
           "scores": {
@@ -227,24 +240,11 @@
             "best-practices": 100,
             "seo": 100
           },
-          "lcpMs": 831,
-          "fcpMs": 283,
-          "tbtMs": 0,
-          "cls": 0.0003,
-          "speedIndexMs": 461
-        },
-        {
-          "scores": {
-            "performance": 98,
-            "accessibility": 100,
-            "best-practices": 100,
-            "seo": 100
-          },
-          "lcpMs": 1123,
-          "fcpMs": 299,
+          "lcpMs": 841,
+          "fcpMs": 216,
           "tbtMs": 0,
           "cls": 0,
-          "speedIndexMs": 412
+          "speedIndexMs": 354
         }
       ]
     }

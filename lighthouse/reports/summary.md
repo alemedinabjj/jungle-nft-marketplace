@@ -1,13 +1,13 @@
 # Lighthouse — mediana de 3 execuções
 
-Gerado em 2026-10-13T20:22:00.599Z. Seleção: median run (lighthouse computeMedianRun: FCP + LCP closest to the median).
+Gerado em 2026-10-13T20:42:29.717Z. Seleção: median run (lighthouse computeMedianRun: FCP + LCP closest to the median).
 
 | Página | Perfil | Performance | Accessibility | Best Practices | SEO | LCP | TBT | CLS |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| home | mobile | 95 | 96 | 100 | 100 | 1362 ms | 247 ms | 0 |
-| home | desktop | 100 | 97 | 100 | 100 | 504 ms | 0 ms | 0.0026 |
-| detail | mobile | 87 | 100 | 100 | 100 | 4101 ms | 47 ms | 0 |
-| detail | desktop | 98 | 100 | 100 | 100 | 1123 ms | 0 ms | 0 |
+| home | mobile | 97 | 100 | 100 | 100 | 1359 ms | 184 ms | 0 |
+| home | desktop | 100 | 100 | 100 | 100 | 380 ms | 0 ms | 0.0026 |
+| detail | mobile | 85 | 100 | 100 | 100 | 4000 ms | 170 ms | 0 |
+| detail | desktop | 99 | 100 | 100 | 100 | 841 ms | 0 ms | 0 |
 
 ## Ambiente
 

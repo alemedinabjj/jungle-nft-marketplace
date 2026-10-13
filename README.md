@@ -185,10 +185,10 @@ Auditoria do **build de produção** (`vite preview`) com o cenário padrão dos
 
 | Página  | Perfil  | Performance | Accessibility | Best Practices | SEO | LCP   | TBT    | CLS   |
 | ------- | ------- | ----------- | ------------- | -------------- | --- | ----- | ------ | ----- |
-| início  | mobile  | **95**      | 96            | 100            | 100 | 1,4 s | 247 ms | 0     |
-| início  | desktop | **100**     | 97            | 100            | 100 | 0,5 s | 0 ms   | 0,003 |
-| detalhe | mobile  | **87**      | 100           | 100            | 100 | 4,1 s | 47 ms  | 0     |
-| detalhe | desktop | **98**      | 100           | 100            | 100 | 1,1 s | 0 ms   | 0     |
+| início  | mobile  | **97**      | 100           | 100            | 100 | 1,4 s | 184 ms | 0     |
+| início  | desktop | **100**     | 100           | 100            | 100 | 0,4 s | 0 ms   | 0,003 |
+| detalhe | mobile  | **85**      | 100           | 100            | 100 | 4,0 s | 170 ms | 0     |
+| detalhe | desktop | **99**      | 100           | 100            | 100 | 0,8 s | 0 ms   | 0     |
 
 <!-- lighthouse:end -->
 
@@ -252,5 +252,5 @@ Vercel com deploy automático a cada push na `main`, a partir do último commit:
 - **Backend simulado:** dados e sessão vivem no navegador (`localStorage`), por definição do desafio. Cada navegador tem seu próprio “servidor”.
 - **Login social / WalletConnect, recuperação de senha, páginas editoriais e “Ver no Etherscan”** aparecem por fidelidade ao Figma, mas ficam desabilitados e dizem isso. Nenhum finge sucesso.
 - **Telas mobile** não existem no Figma (só desktop). Foram desenhadas no mesmo sistema visual; os desvios estão em [`ARCHITECTURE.md`](./ARCHITECTURE.md#desvios-do-figma).
-- **Detalhe mobile no Lighthouse** fica em 87, abaixo de 90, pelo motivo explicado [acima](#lighthouse).
+- **Detalhe mobile no Lighthouse** fica em 85, abaixo de 90, pelo motivo explicado [acima](#lighthouse).
 - O binding do Socket.IO só suporta transporte WebSocket e não envia ping, então o servidor simulado envia heartbeat (ver [`ARCHITECTURE.md`](./ARCHITECTURE.md#socketio-via-msw-transporte-e-limitações-do-binding)).
