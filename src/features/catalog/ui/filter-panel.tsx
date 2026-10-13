@@ -16,7 +16,11 @@ import { toggleValue, type CatalogSearch } from '../model/search-params'
 interface FilterPanelProps {
   search: CatalogSearch
   facets: CatalogPage['facets'] | undefined
-  onChange: (patch: Partial<Omit<CatalogSearch, 'page'>>) => void
+  onChange: (
+    patch:
+      | Partial<Omit<CatalogSearch, 'page'>>
+      | ((previous: CatalogSearch) => Partial<Omit<CatalogSearch, 'page'>>),
+  ) => void
   className?: string
 }
 
@@ -166,7 +170,9 @@ export function FilterPanel({ search, facets, onChange, className }: FilterPanel
         facets={facets?.categories}
         selected={search.categories}
         labels={CATEGORY_LABELS}
-        onToggle={(value) => onChange({ categories: toggleValue(search.categories, value) })}
+        onToggle={(value) =>
+          onChange((previous) => ({ categories: toggleValue(previous.categories, value) }))
+        }
       />
       <PriceRange
         search={search}
@@ -178,7 +184,7 @@ export function FilterPanel({ search, facets, onChange, className }: FilterPanel
         facets={facets?.networks}
         selected={search.networks}
         labels={NETWORK_LABELS}
-        onToggle={(value) => onChange({ networks: toggleValue(search.networks, value) })}
+        onToggle={(value) => onChange((previous) => ({ networks: toggleValue(previous.networks, value) }))}
       />
     </div>
   )

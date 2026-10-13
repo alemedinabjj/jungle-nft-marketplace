@@ -38,13 +38,14 @@ function HomePage() {
   const search = Route.useSearch()
   const navigate = Route.useNavigate()
   const [filtersOpen, setFiltersOpen] = useState(false)
-  const onSearchChange = (next: typeof search) => void navigate({ search: next, resetScroll: false })
+  const onSearchChange = (update: (previous: typeof search) => typeof search) =>
+    void navigate({ search: (previous) => update(previous), resetScroll: false })
   return (
     <Container className="flex flex-col gap-4 pt-10 md:gap-16 md:pt-8 lg:gap-24">
       <MobileSearchBar
         key={search.q ?? ''}
         query={search.q}
-        onSearch={(q) => onSearchChange(withFilters(search, { q }))}
+        onSearch={(q) => onSearchChange((previous) => withFilters(previous, { q }))}
         onOpenFilters={() => setFiltersOpen(true)}
       />
       <Hero />

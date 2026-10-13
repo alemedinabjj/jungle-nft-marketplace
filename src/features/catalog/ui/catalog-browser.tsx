@@ -16,7 +16,8 @@ import { NftCard, NftCardSkeleton } from './nft-card'
 
 interface CatalogBrowserProps {
   search: CatalogSearch
-  onSearchChange: (next: CatalogSearch) => void
+  /** Functional update: always applied to the latest URL state (rapid clicks never drop changes). */
+  onSearchChange: (update: (previous: CatalogSearch) => CatalogSearch) => void
   /** Mobile filters drawer, opened from the page's search bar (Figma mobile). */
   filtersOpen: boolean
   onFiltersOpenChange: (open: boolean) => void
@@ -31,8 +32,14 @@ export function CatalogBrowser({
 }: CatalogBrowserProps) {
   const query = useMemo(() => toCatalogQuery(search), [search])
   const catalog = useCatalog(query)
-  const update = (patch: Partial<Omit<CatalogSearch, 'page'>>) => onSearchChange(withFilters(search, patch))
-  const clearAll = () => onSearchChange(withFilters({ tab: search.tab, sort: search.sort }, {}))
+  const update = (
+    patch:
+      | Partial<Omit<CatalogSearch, 'page'>>
+      | ((previous: CatalogSearch) => Partial<Omit<CatalogSearch, 'page'>>),
+  ) =>
+    onSearchChange((previous) => withFilters(previous, typeof patch === 'function' ? patch(previous) : patch))
+  const clearAll = () =>
+    onSearchChange((previous) => withFilters({ tab: previous.tab, sort: previous.sort }, {}))
 
   const data = catalog.data
   const isUpdating = catalog.isFetching && catalog.isPlaceholderData
