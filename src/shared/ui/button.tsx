@@ -3,7 +3,7 @@ import { Slot } from 'radix-ui'
 import type * as React from 'react'
 import { cn } from '@/shared/lib/cn'
 
-/** shadcn/ui Button, re-skinned with the GreenMint tokens (pill shape, mono type). */
+/** shadcn/ui Button, re-skinned with the Kurio tokens (pill shape, mono type). */
 const buttonVariants = cva(
   "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-mono font-bold whitespace-nowrap transition-colors outline-none focus-visible:ring-[3px] focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-50 aria-busy:cursor-progress aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
