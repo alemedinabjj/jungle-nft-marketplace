@@ -60,7 +60,11 @@ export const authHandlers = [
         displayName,
         email,
         username: baseUsername,
-        bio: '',
+        ensName: baseUsername
+          .replace(/[^a-z0-9-]/g, '-')
+          .padEnd(3, '0')
+          .slice(0, 32),
+        walletNickname: 'Minha carteira',
         avatarUrl: null,
         passwordHash,
         passwordSalt,

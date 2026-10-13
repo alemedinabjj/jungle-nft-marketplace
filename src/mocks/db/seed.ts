@@ -4,7 +4,7 @@ import { USER_FIXTURES, WALLET_FIXTURES } from '../fixtures/users'
 import { hashPassword } from '../lib/crypto'
 import type { DbState } from './types'
 
-export const DB_SCHEMA_VERSION = 1
+export const DB_SCHEMA_VERSION = 2
 
 export interface SeedOptions {
   /** Start with an empty catalog (scenario "empty-catalog"). */

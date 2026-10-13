@@ -12,7 +12,15 @@ export const updateProfileRequestSchema = z.object({
   displayName: z.string().trim().min(2, 'Informe seu nome de exibição').max(40),
   username: usernameSchema,
   email: z.email('Informe um e-mail válido'),
-  bio: z.string().max(280, 'Use no máximo 280 caracteres'),
+  ensName: z
+    .string()
+    .trim()
+    .regex(/^[a-z0-9-]{3,32}$/, 'Use letras minúsculas, números ou hífen (3 a 32)'),
+  walletNickname: z
+    .string()
+    .trim()
+    .min(2, 'Informe um apelido para a carteira')
+    .max(32, 'Use no máximo 32 caracteres'),
 })
 export type UpdateProfileRequest = z.infer<typeof updateProfileRequestSchema>
 

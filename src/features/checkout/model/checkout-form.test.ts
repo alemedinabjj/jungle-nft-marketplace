@@ -7,7 +7,8 @@ const user: User = {
   displayName: 'Ana Ribeiro',
   username: 'ana.ribeiro',
   email: 'ana@kurio.dev',
-  bio: '',
+  ensName: 'ana-ribeiro',
+  walletNickname: 'Cofre da Ana',
   avatarUrl: null,
 }
 const wallets: Wallet[] = [

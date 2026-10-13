@@ -45,7 +45,7 @@ export function initialCheckoutValues(
       profileName: user.displayName,
       email: user.email,
       referralCode: '',
-      ensName: user.username.replace(/[^a-z0-9-]/g, '-').slice(0, 32),
+      ensName: user.ensName,
       note: '',
     },
     walletId: primary?.id ?? '',
