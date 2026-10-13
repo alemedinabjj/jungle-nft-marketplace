@@ -45,6 +45,22 @@
   --color-danger: #ef6a5b;
   --color-success: #7fc48a;
 
+  /* shadcn/ui semantic slots, mapped onto the Figma palette. */
+  --color-background: var(--color-ink);
+  --color-primary-foreground: var(--color-ink);
+  --color-secondary-foreground: var(--color-ink);
+  --color-card: var(--color-surface-card);
+  --color-card-foreground: var(--color-text-primary);
+  --color-popover: var(--color-surface-card);
+  --color-popover-foreground: var(--color-text-primary);
+  --color-muted: var(--color-surface-dark);
+  --color-muted-foreground: var(--color-text-secondary);
+  --color-accent: var(--color-surface-dark);
+  --color-accent-foreground: var(--color-text-primary);
+  --color-destructive: var(--color-danger);
+  --color-input: var(--color-border-soft);
+  --color-ring: var(--color-text-accent);
+
   --text-tiny: 10px;
   --text-caption: 12px;
   --text-body: 14px;

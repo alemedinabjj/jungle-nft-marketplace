@@ -112,8 +112,8 @@ export default tseslint.config(
     rules: { 'no-restricted-imports': 'off' },
   },
   {
-    // Route modules export `Route`; the router plugin handles HMR/code-splitting.
-    files: ['src/routes/**/*.tsx'],
+    // Route modules export `Route`; shadcn files co-export their cva variants.
+    files: ['src/routes/**/*.tsx', 'src/shared/ui/**/*.tsx'],
     rules: { 'react-refresh/only-export-components': 'off' },
   },
   {
