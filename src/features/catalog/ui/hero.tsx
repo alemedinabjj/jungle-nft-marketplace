@@ -86,7 +86,7 @@ export function Hero() {
       <div
         role="group"
         aria-label="Escolher destaque"
-        className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1.5 md:bottom-12 md:left-[560px] md:translate-x-0 md:gap-2"
+        className="absolute bottom-0 left-1/2 flex -translate-x-1/2 md:bottom-10 md:left-[552px] md:translate-x-0"
       >
         {SLIDES.map((item, i) => (
           <button
@@ -95,11 +95,17 @@ export function Hero() {
             onClick={() => setIndex(i)}
             aria-label={`Destaque ${i + 1} de ${SLIDES.length}`}
             aria-current={i === index}
-            className={cn(
-              'size-2 rounded-full transition-colors',
-              i === index ? 'bg-primary' : 'bg-secondary/50 hover:bg-secondary',
-            )}
-          />
+            // 24×24 hit area (WCAG 2.5.8) around the 8px dot from the design.
+            className="group flex size-6 items-center justify-center rounded-full"
+          >
+            <span
+              aria-hidden="true"
+              className={cn(
+                'size-2 rounded-full transition-colors',
+                i === index ? 'bg-primary' : 'bg-secondary/50 group-hover:bg-secondary',
+              )}
+            />
+          </button>
         ))}
       </div>
     </section>
