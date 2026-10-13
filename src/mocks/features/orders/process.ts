@@ -1,7 +1,6 @@
 import { TERMINAL_ORDER_STATUSES } from '@/shared/contracts'
 import { getDb, mutateDb } from '../../db/store'
 import type { DbState, OrderRecord } from '../../db/types'
-import { stableHash } from '../../lib/crypto'
 import { getScenario } from '../../scenarios/controller'
 import { emitNftUpdated, emitOrderUpdated } from '../../socket/events'
 import { findEdition } from '../cart/pricing'
@@ -29,7 +28,7 @@ function settle(db: DbState, order: OrderRecord): void {
       : 'Uma das edições esgotou antes da confirmação. Nenhum valor foi cobrado.'
   } else {
     order.status = 'confirmed'
-    order.transactionId = `0x${stableHash({ id: order.id, at: order.createdAt }).padEnd(12, '0')}${order.id.slice(-8)}`
+    order.transactionId = `0x${Array.from(crypto.getRandomValues(new Uint8Array(32)), (byte) => byte.toString(16).padStart(2, '0')).join('')}`
     const touched = new Set<string>()
     for (const line of order.purchased) {
       const nft = db.nfts.find((candidate) => candidate.id === line.nftId)!
