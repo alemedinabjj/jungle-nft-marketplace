@@ -27,7 +27,7 @@ export default defineConfig({
     video: executablePath ? 'off' : 'retain-on-failure',
     locale: 'pt-BR',
     // Deterministic rendering: no shimmer, no transitions.
-    reducedMotion: 'reduce',
+    contextOptions: { reducedMotion: 'reduce' },
     ...(executablePath && { launchOptions: { executablePath } }),
     timezoneId: 'America/Sao_Paulo',
   },
