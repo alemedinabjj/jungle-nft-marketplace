@@ -5,16 +5,19 @@ import { formatEth } from '@/shared/money'
 import { NftImage } from '@/shared/ui/nft-image'
 import { Unavailable } from '@/shared/ui/unavailable'
 
-const dateParts = new Intl.DateTimeFormat('pt-BR', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-  timeZone: 'America/Sao_Paulo',
-})
+// Created lazily: building an Intl formatter is costly and must not run at import time.
+let dateParts: Intl.DateTimeFormat | undefined
+const getDateParts = () =>
+  (dateParts ??= new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'America/Sao_Paulo',
+  }))
 
 /** "13 out, 2026" (Figma: "29 Jul, 2026"). */
 function formatDate(iso: string): string {
-  const parts = dateParts.formatToParts(new Date(iso))
+  const parts = getDateParts().formatToParts(new Date(iso))
   const get = (type: Intl.DateTimeFormatPartTypes) => parts.find((part) => part.type === type)?.value ?? ''
   return `${get('day')} ${get('month').replace('.', '')}, ${get('year')}`
 }
