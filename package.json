@@ -68,6 +68,7 @@
     "lint-staged": "^17.6.0",
     "msw": "^2.15.0",
     "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.71.2",

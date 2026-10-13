@@ -17,7 +17,7 @@ const ARTWORK_ALT: Record<ArtworkKey, string> = {
 
 export function artworkImage(key: ArtworkKey, name: string) {
   return {
-    src: `/images/nfts/${key}.webp`,
+    src: `/images/nfts/${key}-800.webp`,
     alt: `${name}: ${ARTWORK_ALT[key]}`,
     width: 800,
     height: 800,
