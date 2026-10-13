@@ -28,7 +28,7 @@ function LoginPage() {
   const navigate = Route.useNavigate()
   const queryClient = useQueryClient()
   return (
-    <Container className="py-10 md:py-16">
+    <Container className="py-6 md:py-16">
       <AuthCard
         mode="login"
         redirect={target}

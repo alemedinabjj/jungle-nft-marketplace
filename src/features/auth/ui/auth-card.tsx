@@ -16,12 +16,15 @@ export function AuthCard({ mode, description, redirect, notice, children }: Auth
   return (
     <section
       aria-labelledby="auth-title"
-      className="mx-auto w-full max-w-[500px] rounded-3xl border border-border bg-surface-card px-6 pt-12 pb-10 sm:px-20"
+      className="mx-auto w-full max-w-[500px] rounded-3xl border border-border bg-surface-card px-5 pt-8 pb-8 md:px-20 md:pt-12 md:pb-10"
     >
       <h1 id="auth-title" className="sr-only">
         {mode === 'login' ? 'Entrar na Kurio' : 'Criar conta na Kurio'}
       </h1>
-      <nav aria-label="Acesso" className="flex items-center justify-center gap-2 text-body-lg font-bold">
+      <nav
+        aria-label="Acesso"
+        className="flex items-center justify-center gap-2 text-body-lg font-bold whitespace-nowrap"
+      >
         <Link
           to="/login"
           search={search}
@@ -46,7 +49,9 @@ export function AuthCard({ mode, description, redirect, notice, children }: Auth
           Criar conta
         </Link>
       </nav>
-      <p className="mt-6 text-center text-body leading-4 text-text-secondary">{description}</p>
+      <p className="mt-5 text-center text-body leading-5 text-text-secondary md:mt-6 md:leading-4">
+        {description}
+      </p>
       {notice && <div className="mt-6">{notice}</div>}
       <div className="mt-6">{children}</div>
     </section>

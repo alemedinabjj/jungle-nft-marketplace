@@ -136,7 +136,7 @@ export function OrderReceipt({ order }: { order: Order }) {
   return (
     <article
       aria-labelledby="receipt-title"
-      className="mx-auto flex max-w-[578px] flex-col gap-8 rounded-3xl border border-border bg-surface-card px-6 py-10 sm:px-11"
+      className="mx-auto flex max-w-[578px] flex-col gap-8 rounded-3xl border border-border bg-surface-card px-5 py-8 md:px-11 md:py-10"
     >
       <header className="flex flex-col items-center gap-4 text-center">
         <CheckCircle2 aria-hidden="true" className="size-20 text-success" />
