@@ -3,6 +3,7 @@ import type { QueryClient } from '@tanstack/react-query'
 import { NotFoundPage } from '@/shared/ui/not-found-page'
 import { RouteErrorPage } from '@/shared/ui/route-error-page'
 import { routeTree } from './routeTree.gen'
+import { parseSearch, stringifySearch } from './search-serialization'
 
 export interface RouterContext {
   queryClient: QueryClient
@@ -16,6 +17,8 @@ export function createAppRouter(queryClient: QueryClient) {
     // Data freshness is owned by TanStack Query, not the router cache.
     defaultPreloadStaleTime: 0,
     scrollRestoration: true,
+    parseSearch,
+    stringifySearch,
     defaultNotFoundComponent: NotFoundPage,
     defaultErrorComponent: RouteErrorPage,
   })
