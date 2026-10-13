@@ -3,9 +3,9 @@ import { Slot } from 'radix-ui'
 import type * as React from 'react'
 import { cn } from '@/shared/lib/cn'
 
-/** shadcn/ui Button, re-skinned with the Kurio tokens (pill shape, mono type). */
+/** shadcn/ui Button, re-skinned with the Kurio tokens (Figma radius, mono type). */
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-mono font-bold whitespace-nowrap transition-colors outline-none focus-visible:ring-[3px] focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-50 aria-busy:cursor-progress aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "inline-flex shrink-0 items-center justify-center gap-2 rounded-md font-mono font-bold whitespace-nowrap transition-colors outline-none focus-visible:ring-[3px] focus-visible:ring-ring/60 disabled:pointer-events-none disabled:opacity-50 aria-busy:cursor-progress aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -17,9 +17,9 @@ const buttonVariants = cva(
         link: 'text-text-accent underline-offset-4 hover:underline',
       },
       size: {
-        default: 'h-12 px-6 text-body',
-        sm: 'h-9 px-4 text-caption',
-        lg: 'h-14 px-8 text-body-lg',
+        default: 'h-10 px-6 text-body',
+        sm: 'h-8 px-4 text-caption',
+        lg: 'h-12 px-8 text-body-lg',
         icon: 'size-10',
         'icon-sm': 'size-8',
       },
