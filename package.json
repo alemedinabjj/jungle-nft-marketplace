@@ -19,7 +19,8 @@
     "lighthouse": "node lighthouse/run.mjs",
     "lighthouse:assert": "node lighthouse/assert.mjs",
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build && pnpm test:e2e && pnpm lighthouse && pnpm lighthouse:assert",
-    "prepare": "husky"
+    "prepare": "husky",
+    "shell:update": "node scripts/capture-shell.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -55,6 +56,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "@vitest/coverage-v8": "^5.0.4",
+    "chrome-launcher": "1.2.2",
     "eslint": "^10.12.0",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-boundaries": "^7.2.0",
