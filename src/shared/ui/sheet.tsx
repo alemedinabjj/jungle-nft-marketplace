@@ -1,5 +1,6 @@
 import { XIcon } from 'lucide-react'
 import { Dialog as SheetPrimitive } from 'radix-ui'
+import { useRef } from 'react'
 import type * as React from 'react'
 import { cn } from '@/shared/lib/cn'
 
@@ -20,6 +21,9 @@ function SheetContent({
   side = 'right',
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & { side?: 'right' | 'left' | 'bottom' }) {
+  // Controlled sheets may be opened from outside a <SheetTrigger>; remember who
+  // had focus so it can be restored on close (Radix only restores to its trigger).
+  const returnFocus = useRef<HTMLElement | null>(null)
   return (
     <SheetPrimitive.Portal>
       <SheetPrimitive.Overlay data-slot="sheet-overlay" className="fixed inset-0 z-50 bg-black/60" />
@@ -33,6 +37,17 @@ function SheetContent({
           className,
         )}
         {...props}
+        onOpenAutoFocus={(event) => {
+          returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+          props.onOpenAutoFocus?.(event)
+        }}
+        onCloseAutoFocus={(event) => {
+          props.onCloseAutoFocus?.(event)
+          if (returnFocus.current?.isConnected) {
+            event.preventDefault()
+            returnFocus.current.focus()
+          }
+        }}
       >
         {children}
         <SheetPrimitive.Close className="absolute top-4 right-4 flex size-9 items-center justify-center rounded-full text-text-secondary hover:bg-accent hover:text-text-primary">
