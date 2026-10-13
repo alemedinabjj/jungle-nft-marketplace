@@ -177,7 +177,7 @@ export function SiteHeader({ cartSlot, statusSlot }: { cartSlot: ReactNode; stat
 }
 
 /** Mobile bottom tab bar (Figma "Tab Bar"). */
-export function MobileTabBar({ cartCount }: { cartCount: number }) {
+export function MobileTabBar({ cartCount, statusSlot }: { cartCount: number; statusSlot?: ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const session = useSession()
   const items = [
@@ -196,6 +196,7 @@ export function MobileTabBar({ cartCount }: { cartCount: number }) {
       aria-label="Navegação inferior"
       className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-ink/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
     >
+      {statusSlot && <div className="absolute top-1.5 right-2">{statusSlot}</div>}
       <ul className="grid grid-cols-4">
         {items.map((item) => (
           <li key={item.label}>

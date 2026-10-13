@@ -36,7 +36,7 @@ function Layout() {
         <Outlet />
       </main>
       <SiteFooter />
-      <MobileTabBar cartCount={cartCount} />
+      <MobileTabBar cartCount={cartCount} statusSlot={<RealtimeStatusBadge />} />
     </>
   )
 }
