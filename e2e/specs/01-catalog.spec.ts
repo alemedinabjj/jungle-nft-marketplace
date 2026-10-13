@@ -34,7 +34,9 @@ test.describe('catálogo', () => {
     // pagination keeps state in the URL
     await page.getByRole('link', { name: 'Página 2' }).click()
     await expect(page).toHaveURL(/page=2/)
-    const secondPageFirst = await grid(page).getByRole('heading').first().innerText()
+    // wait for page 2 to replace the previous page (placeholder data stays while fetching)
+    const secondPageFirst = 'Amber Ape #400'
+    await expect(grid(page).getByRole('heading').first()).toHaveText(secondPageFirst)
 
     // any filter change resets to page 1
     await withFilters(page, async () => {
