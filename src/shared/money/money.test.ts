@@ -59,3 +59,13 @@ describe('money (ETH as decimal strings)', () => {
     expect(formatEth('0.016', { symbol: false })).toBe('0.016')
   })
 })
+
+describe('slider step helpers', () => {
+  it('converts between ETH strings and integer steps', async () => {
+    const { ethToSteps, stepsToEth } = await import('./money')
+    expect(ethToSteps('12.305')).toBe(1230)
+    expect(ethToSteps('12.301', 2, 'up')).toBe(1231)
+    expect(stepsToEth(1230)).toBe('12.3')
+    expect(stepsToEth(2)).toBe('0.02')
+  })
+})

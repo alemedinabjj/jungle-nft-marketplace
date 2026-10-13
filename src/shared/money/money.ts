@@ -80,3 +80,17 @@ export function formatEth(amount: EthAmount, { symbol = true }: FormatOptions = 
   const text = value.toFixed(decimals)
   return symbol ? `${text} ETH` : text
 }
+
+/**
+ * Slider helpers: integer step positions (e.g. hundredths of ETH) for range
+ * inputs. The step index is UI state, never used for arithmetic on money.
+ */
+export function ethToSteps(amount: EthAmount, decimals = 2, rounding: 'down' | 'up' = 'down'): number {
+  const scaled = parseEth(amount).times(new D(10).pow(decimals))
+  return (rounding === 'up' ? scaled.ceil() : scaled.floor()).toNumber()
+}
+
+export function stepsToEth(steps: number, decimals = 2): EthAmount {
+  assertQuantity(steps)
+  return toEthString(new D(steps).dividedBy(new D(10).pow(decimals)))
+}
