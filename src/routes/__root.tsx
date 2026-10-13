@@ -4,6 +4,7 @@ import { SessionCoordinator } from '@/app/providers/session-coordinator'
 import type { RouterContext } from '@/app/router'
 import { CartLink, useCartItemCount } from '@/features/cart'
 import { RealtimeProvider, RealtimeStatusBadge } from '@/features/realtime'
+import { Deferred } from '@/shared/ui/deferred'
 import { SiteFooter } from '@/shared/ui/site-footer'
 
 export const Route = createRootRouteWithContext<RouterContext>()({
@@ -35,7 +36,9 @@ function Layout() {
       <main id="main" tabIndex={-1} className="outline-none">
         <Outlet />
       </main>
-      <SiteFooter />
+      <Deferred>
+        <SiteFooter />
+      </Deferred>
       <MobileTabBar cartCount={cartCount} statusSlot={<RealtimeStatusBadge />} />
     </>
   )

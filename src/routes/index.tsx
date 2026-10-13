@@ -12,6 +12,7 @@ import {
 } from '@/features/catalog'
 import { noop } from '@/shared/lib/noop'
 import { Container } from '@/shared/ui/container'
+import { Deferred } from '@/shared/ui/deferred'
 import { BlogSection, PromoSection } from '@/shared/ui/home-sections'
 
 export const Route = createFileRoute('/')({
@@ -57,8 +58,10 @@ function HomePage() {
           onFiltersOpenChange={setFiltersOpen}
         />
       </div>
-      <PromoSection />
-      <BlogSection />
+      <Deferred>
+        <PromoSection />
+        <BlogSection />
+      </Deferred>
     </Container>
   )
 }
