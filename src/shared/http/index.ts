@@ -5,6 +5,7 @@ export {
   onUnauthorized,
   setRequestGate,
   setTokenProvider,
+  whenRequestsReady,
   toAppError,
   REQUEST_TIMEOUT_MS,
 } from './client'

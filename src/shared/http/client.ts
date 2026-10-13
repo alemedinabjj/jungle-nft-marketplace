@@ -18,6 +18,11 @@ export function setRequestGate(gate: Promise<unknown>): void {
   requestGate = gate
 }
 
+/** Resolves once outgoing traffic is allowed (mock worker ready in demo/dev). */
+export function whenRequestsReady(): Promise<unknown> {
+  return requestGate
+}
+
 export function setTokenProvider(provider: TokenProvider): void {
   tokenProvider = provider
 }
