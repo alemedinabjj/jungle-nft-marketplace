@@ -14,7 +14,19 @@ import './index.css'
  * 3. render the shell immediately so the LCP never waits on MSW.
  */
 if (env.VITE_ENABLE_MOCKS) {
-  setRequestGate(import('@/mocks/browser').then(({ startMockWorker }) => startMockWorker()))
+  const ready = import('@/mocks/browser').then(({ startMockWorker }) => startMockWorker())
+  setRequestGate(ready)
+  // Scenario panel: lazy, after the worker is up. Hidden under browser automation
+  // (Playwright/visual baselines drive scenarios through the URL and window.__kurioMocks).
+  if (!navigator.webdriver) {
+    void ready.then(async () => {
+      const [{ mountScenarioPanel }, { mockControl }] = await Promise.all([
+        import('@/mocks/panel/mount'),
+        import('@/mocks/control'),
+      ])
+      mountScenarioPanel(mockControl)
+    })
+  }
 }
 
 const queryClient = createQueryClient()
