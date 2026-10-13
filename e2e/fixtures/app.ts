@@ -36,8 +36,11 @@ export class Mocks {
     await this.ready()
   }
 
+  /** Mock backend live and React mounted over the static shell (whose controls are inert). */
   async ready() {
-    await this.page.waitForFunction(() => window.__kurioMocks !== undefined)
+    await this.page.waitForFunction(
+      () => window.__kurioMocks !== undefined && document.documentElement.dataset.appReady === 'true',
+    )
   }
 
   setScenario(id: string) {

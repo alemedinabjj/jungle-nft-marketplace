@@ -10,9 +10,12 @@ import { normalizeShell } from '../../scripts/shell-utils.mjs'
 test('o shell estático corresponde ao primeiro render do app', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'desktop', 'markup is viewport-independent')
   await page.route(/\/assets\/(browser|control)-[^/]+\.js$/, () => new Promise(() => {}))
+  // Below-the-fold content renders on idle (Deferred); keep it out of the shell.
+  await page.addInitScript(() => {
+    window.requestIdleCallback = () => 0
+  })
   await page.goto('/?shell-capture')
-  await page.getByRole('heading', { level: 1 }).first().waitFor()
-  await page.waitForTimeout(300)
+  await page.waitForFunction(() => document.documentElement.dataset.appReady === 'true')
   const rendered = normalizeShell(await page.evaluate(() => document.getElementById('root')?.innerHTML ?? ''))
   const committed = (
     await readFile(new URL('../../src/app/shell/home-shell.html', import.meta.url), 'utf8')

@@ -39,9 +39,12 @@ try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
   // Hold the mock worker back: requests stay gated, so the UI shows skeletons only.
   await page.route(/\/assets\/(browser|control)-[^/]+\.js$/, () => new Promise(() => {}))
+  // Below-the-fold content renders on idle (Deferred); keep it out of the shell.
+  await page.addInitScript(() => {
+    window.requestIdleCallback = () => 0
+  })
   await page.goto(`http://localhost:${PORT}/?shell-capture`)
-  await page.getByRole('heading', { level: 1 }).first().waitFor()
-  await page.waitForTimeout(300)
+  await page.waitForFunction(() => document.documentElement.dataset.appReady === 'true')
   const html = await page.evaluate(() => document.getElementById('root')?.innerHTML ?? '')
   await browser.close()
   const shell = normalizeShell(html)
