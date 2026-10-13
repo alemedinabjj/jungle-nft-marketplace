@@ -97,8 +97,8 @@ export const SCENARIOS = [
   {
     id: 'favorites-failure',
     label: 'Favoritos falham',
-    description: 'Inclusão e remoção de favoritos respondem 500 (rollback).',
-    latency: 300,
+    description: 'Inclusão e remoção de favoritos respondem 500 após 1 s (rollback visível).',
+    latency: 1000,
     failures: { favorites: 'server' },
   },
   {
