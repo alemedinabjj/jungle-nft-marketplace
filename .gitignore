@@ -32,3 +32,4 @@ blob-report
 # Local agent configuration (never versioned)
 CLAUDE.md
 .claude/
+.tanstack/
