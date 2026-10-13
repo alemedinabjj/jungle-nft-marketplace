@@ -69,8 +69,12 @@ export const useRemoveCoupon = () => useCartMutation(() => cartApi.removeCoupon(
 
 /** After login: merge the guest cart into the user's cart (server clamps to stock). */
 export async function mergeGuestCart(queryClient: QueryClient, userId: string): Promise<void> {
+  const owner = cartOwner(userId)
   const cart = await cartApi.mergeGuest()
-  queryClient.setQueryData(cartKeys.detail(cartOwner(userId)), cart)
+  // A GET for the (pre-merge) user cart may still be in flight: drop it so its
+  // stale response can't overwrite the merged cart.
+  await queryClient.cancelQueries({ queryKey: cartKeys.detail(owner) })
+  queryClient.setQueryData(cartKeys.detail(owner), cart)
   queryClient.removeQueries({ queryKey: cartKeys.detail(`guest:${getGuestId()}`) })
-  await queryClient.invalidateQueries({ queryKey: cartKeys.quote(cartOwner(userId)) })
+  await queryClient.invalidateQueries({ queryKey: cartKeys.quote(owner) })
 }
