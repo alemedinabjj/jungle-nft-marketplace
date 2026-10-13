@@ -1,5 +1,12 @@
 import { setupWorker } from 'msw/browser'
+import { bootstrapMocks, mockControl, type MockControl } from './control'
 import { handlers } from './handlers'
+
+declare global {
+  interface Window {
+    __kurioMocks?: MockControl
+  }
+}
 
 export const worker = setupWorker(...handlers)
 
@@ -13,4 +20,6 @@ export async function startMockWorker(): Promise<void> {
     },
     quiet: true,
   })
+  await bootstrapMocks(new URL(location.href))
+  window.__kurioMocks = mockControl
 }
