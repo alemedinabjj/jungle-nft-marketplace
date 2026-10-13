@@ -37,7 +37,7 @@ function SearchForm({ onDone, focusOnMount }: { onDone?: () => void; focusOnMoun
 }
 
 /** Desktop + tablet header (Figma "Header With Divider"). */
-export function SiteHeader({ cartSlot }: { cartSlot: ReactNode }) {
+export function SiteHeader({ cartSlot, statusSlot }: { cartSlot: ReactNode; statusSlot?: ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const session = useSession()
   const logout = useLogout()
@@ -93,6 +93,7 @@ export function SiteHeader({ cartSlot }: { cartSlot: ReactNode }) {
           </nav>
 
           <div className="flex items-center gap-3">
+            {statusSlot}
             <button
               type="button"
               onClick={() => setSearchOpen((open) => !open)}

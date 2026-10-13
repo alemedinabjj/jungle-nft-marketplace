@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { useSession } from '@/features/auth'
 import { useCart } from '@/features/cart'
 import { CheckoutFlow, checkoutStorage } from '@/features/checkout'
+import { CartChangeNotices } from '@/features/realtime'
 import { useWallets } from '@/features/wallets'
 import { isAppError } from '@/shared/http'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
@@ -33,6 +34,7 @@ function CheckoutPage() {
         items={[{ label: 'Início', to: '/' }, { label: 'Mercado', to: '/cart' }, { label: 'Pagamento' }]}
       />
       <h1 className="sr-only">Pagamento</h1>
+      <CartChangeNotices />
       {!user || cart.isPending || wallets.isPending ? (
         <div
           className="grid gap-10 lg:grid-cols-[553px_293px] lg:justify-between"

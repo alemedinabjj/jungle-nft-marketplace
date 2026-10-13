@@ -3,6 +3,7 @@ import { CartLines, CartLinesSkeleton, CouponForm, useCart, useQuote } from '@/f
 import { NftCard, useRelated } from '@/features/catalog'
 import { RelatedNfts } from '@/features/nft-detail'
 import { canConfirm, QuoteSummary } from '@/features/quote'
+import { CartChangeNotices } from '@/features/realtime'
 import { isAppError } from '@/shared/http'
 import { cn } from '@/shared/lib/cn'
 import { Breadcrumbs } from '@/shared/ui/breadcrumbs'
@@ -32,6 +33,7 @@ function CartPage() {
         items={[{ label: 'Início', to: '/' }, { label: 'Mercado', to: '/' }, { label: 'Carrinho' }]}
       />
       <h1 className="sr-only">Carrinho</h1>
+      <CartChangeNotices />
 
       {cart.isPending ? (
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_330px] lg:gap-16">

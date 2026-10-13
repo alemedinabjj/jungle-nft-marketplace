@@ -3,6 +3,7 @@ import { MobileTabBar, SiteHeader } from '@/app/layout/site-header'
 import { SessionCoordinator } from '@/app/providers/session-coordinator'
 import type { RouterContext } from '@/app/router'
 import { CartLink, useCartItemCount } from '@/features/cart'
+import { RealtimeProvider, RealtimeStatusBadge } from '@/features/realtime'
 import { SiteFooter } from '@/shared/ui/site-footer'
 
 export const Route = createRootRouteWithContext<RouterContext>()({
@@ -11,6 +12,14 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 })
 
 function RootLayout() {
+  return (
+    <RealtimeProvider>
+      <Layout />
+    </RealtimeProvider>
+  )
+}
+
+function Layout() {
   const cartCount = useCartItemCount()
   return (
     <>
@@ -22,7 +31,7 @@ function RootLayout() {
       >
         Pular para o conteúdo
       </a>
-      <SiteHeader cartSlot={<CartLink />} />
+      <SiteHeader cartSlot={<CartLink />} statusSlot={<RealtimeStatusBadge />} />
       <main id="main" tabIndex={-1} className="outline-none">
         <Outlet />
       </main>
