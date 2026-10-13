@@ -57,6 +57,10 @@ export default tseslint.config(
       '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'inline-type-imports' }],
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
       '@typescript-eslint/no-confusing-void-expression': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' },
+      ],
       'no-console': ['error', { allow: ['warn', 'error'] }],
 
       'boundaries/dependencies': [
@@ -117,8 +121,9 @@ export default tseslint.config(
     rules: { 'react-refresh/only-export-components': 'off' },
   },
   {
+    // The simulated backend works on fixtures it fully controls.
     files: ['src/mocks/**/*.{ts,tsx}'],
-    rules: { 'no-restricted-imports': 'off' },
+    rules: { 'no-restricted-imports': 'off', '@typescript-eslint/no-non-null-assertion': 'off' },
   },
   {
     // Pure domain layer: no React, no HTTP, no cache library.
@@ -149,7 +154,10 @@ export default tseslint.config(
   },
   {
     files: ['src/**/*.test.{ts,tsx}'],
-    rules: { '@typescript-eslint/no-non-null-assertion': 'off' },
+    rules: {
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+    },
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
