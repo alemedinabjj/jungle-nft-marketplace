@@ -7,7 +7,7 @@ export function RouteErrorPage({ error, reset }: ErrorComponentProps) {
   const message = isAppError(error) ? error.message : 'Algo deu errado ao carregar esta página.'
 
   return (
-    <main
+    <section
       role="alert"
       className="mx-auto flex max-w-content flex-col items-center gap-6 px-6 py-24 text-center"
     >
@@ -23,6 +23,6 @@ export function RouteErrorPage({ error, reset }: ErrorComponentProps) {
       >
         Tentar novamente
       </button>
-    </main>
+    </section>
   )
 }
