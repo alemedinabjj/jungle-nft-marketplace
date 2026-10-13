@@ -45,7 +45,7 @@
     "@eslint/js": "^10.0.1",
     "@lhci/cli": "^0.15.1",
     "@mswjs/socket.io-binding": "^0.2.0",
-    "@playwright/test": "^1.64.0",
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-query-devtools": "^5.104.2",
     "@tanstack/router-cli": "^1.167.43",
