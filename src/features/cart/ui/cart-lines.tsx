@@ -49,7 +49,7 @@ function CartLine({ item, issue }: { item: CartItem; issue: QuoteIssue | undefin
           <span className="sr-only">Preço unitário: </span>
           {formatEth(item.unitPrice)}
         </p>
-        <div className="col-span-2 col-start-2 flex items-center justify-between gap-3 md:col-span-1 md:col-start-auto">
+        <div className="col-start-2 row-start-2 md:col-start-auto md:row-start-auto">
           <QuantityStepper
             size="sm"
             value={item.quantity}
@@ -63,21 +63,20 @@ function CartLine({ item, issue }: { item: CartItem; issue: QuoteIssue | undefin
               )
             }
           />
-          <p className="text-body font-bold text-text-accent md:hidden">
-            {formatEth(multiplyEth(item.unitPrice, item.quantity))}
-          </p>
         </div>
-        <p className="hidden text-body font-bold text-text-accent md:block">
+        {/* Single total element for every width (grid placement changes, not the node). */}
+        <p className="col-start-3 row-start-2 text-right text-body font-bold text-text-accent md:col-start-auto md:row-start-auto md:text-left">
           <span className="sr-only">Total da linha: </span>
           {formatEth(multiplyEth(item.unitPrice, item.quantity))}
         </p>
         <button
           type="button"
           onClick={() =>
-            remove.mutate(
-              { nftId: item.nftId, editionId: item.editionId },
-              { onSuccess: () => announce(`${item.name} removido do carrinho.`) },
-            )
+            // mutateAsync: the line unmounts on success, but the announcement must still happen
+            void remove
+              .mutateAsync({ nftId: item.nftId, editionId: item.editionId })
+              .then(() => announce(`${item.name} removido do carrinho.`))
+              .catch(() => undefined)
           }
           disabled={busy}
           aria-label={`Remover ${item.name} do carrinho`}
