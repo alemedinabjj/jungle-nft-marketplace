@@ -23,6 +23,8 @@ export default defineConfig({
     target: 'es2022',
     sourcemap: true,
   },
+  // Lazily imported at runtime; pre-bundle them so dev never serves an outdated dep.
+  optimizeDeps: { include: ['socket.io-client', 'msw/browser', '@mswjs/socket.io-binding'] },
   server: { port: 5173, strictPort: true },
   preview: { port: 4173, strictPort: true },
 })
