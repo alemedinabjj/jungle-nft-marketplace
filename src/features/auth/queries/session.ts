@@ -51,6 +51,19 @@ export function useCurrentUserId(): string | null {
   return useSession().data?.user.id ?? null
 }
 
+/**
+ * Explicit logout also forgets tab-scoped drafts (checkout form, in-flight
+ * attempt). A session *expiry* keeps them so the user can resume after login.
+ */
+function clearSessionScopedStorage(): void {
+  try {
+    for (const key of Object.keys(sessionStorage))
+      if (key.startsWith('kurio:')) sessionStorage.removeItem(key)
+  } catch {
+    // storage unavailable: nothing to clear
+  }
+}
+
 function persist(queryClient: QueryClient, session: Session): void {
   writeStoredSession({ token: session.token, userId: session.user.id, expiresAt: session.expiresAt })
   queryClient.setQueryData(authKeys.session, session)
@@ -77,8 +90,12 @@ export function useRegister() {
  * (private keys include the userId, but we clear everything to be safe).
  * Realtime teardown reacts to the session becoming null.
  */
-export function endSession(queryClient: QueryClient): void {
+export function endSession(
+  queryClient: QueryClient,
+  { clearDrafts = false }: { clearDrafts?: boolean } = {},
+): void {
   clearStoredSession()
+  if (clearDrafts) clearSessionScopedStorage()
   void queryClient.cancelQueries()
   queryClient.clear()
   queryClient.setQueryData(authKeys.session, null)
@@ -94,6 +111,6 @@ export function useLogout() {
         // Logging out locally must succeed even if the server call fails.
       }
     },
-    onSettled: () => endSession(queryClient),
+    onSettled: () => endSession(queryClient, { clearDrafts: true }),
   })
 }
