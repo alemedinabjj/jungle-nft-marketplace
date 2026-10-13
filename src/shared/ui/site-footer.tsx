@@ -117,7 +117,7 @@ export function SiteFooter() {
             <div>
               <p className="mb-3 text-body-lg font-bold text-text-primary">Redes sociais</p>
               <ul className="flex gap-2" aria-label="Redes sociais (indisponíveis nesta demonstração)">
-                {['f', 'ig', 'x', 'in', '▶'].map((label) => (
+                {['f', 'ig', 'x', 'in', 'yt'].map((label) => (
                   <li
                     key={label}
                     aria-hidden="true"

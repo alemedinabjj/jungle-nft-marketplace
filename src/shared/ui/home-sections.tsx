@@ -119,7 +119,9 @@ export function BlogSection() {
               </p>
               <h3 className="text-body font-bold text-text-primary">{post.title}</h3>
               <p className="text-caption text-text-secondary">{post.body}</p>
-              <Unavailable className="text-caption font-bold text-text-accent">Ler mais →</Unavailable>
+              <Unavailable className="inline-flex items-center gap-1 text-caption font-bold text-text-accent">
+                Ler mais <ArrowRight aria-hidden="true" className="size-3.5" />
+              </Unavailable>
             </div>
           </li>
         ))}

@@ -1,3 +1,4 @@
+import { TriangleAlertIcon } from 'lucide-react'
 import { useId, type ReactElement, type ReactNode } from 'react'
 import { cn } from '@/shared/lib/cn'
 import { Label } from './label'
@@ -54,7 +55,7 @@ export function FormField({ label, hideLabel, required, error, hint, className, 
 export function FieldError({ id, children }: { id?: string; children: ReactNode }) {
   return (
     <p id={id} role="alert" className="flex items-center gap-1 text-caption text-danger">
-      <span aria-hidden="true">⚠</span>
+      <TriangleAlertIcon aria-hidden="true" className="size-3.5 shrink-0" />
       {children}
     </p>
   )
