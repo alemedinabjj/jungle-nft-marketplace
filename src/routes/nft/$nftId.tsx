@@ -7,6 +7,7 @@ import {
   useNftDetail,
   useRelated,
 } from '@/features/catalog'
+import { FavoriteButton } from '@/features/favorites'
 import { NftDetailView, RelatedNfts } from '@/features/nft-detail'
 import { isAppError } from '@/shared/http'
 import { noop } from '@/shared/lib/noop'
@@ -54,7 +55,10 @@ function NftPage() {
         ]}
       />
       {detail.data ? (
-        <NftDetailView nft={detail.data} />
+        <NftDetailView
+          nft={detail.data}
+          favoriteSlot={<FavoriteButton nftId={detail.data.id} name={detail.data.name} />}
+        />
       ) : detail.isError ? (
         isAppError(detail.error) && detail.error.kind === 'not_found' ? (
           <NftNotFound />
