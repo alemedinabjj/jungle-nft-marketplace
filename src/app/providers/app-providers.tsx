@@ -1,6 +1,7 @@
 import { QueryClientProvider, type QueryClient } from '@tanstack/react-query'
 import { RouterProvider } from '@tanstack/react-router'
 import type { createAppRouter } from '@/app/router'
+import { LiveRegionProvider } from '@/shared/ui/live-region'
 
 interface AppProvidersProps {
   queryClient: QueryClient
@@ -10,7 +11,9 @@ interface AppProvidersProps {
 export function AppProviders({ queryClient, router }: AppProvidersProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <LiveRegionProvider>
+        <RouterProvider router={router} />
+      </LiveRegionProvider>
     </QueryClientProvider>
   )
 }
