@@ -90,6 +90,8 @@
 @layer base {
   html {
     color-scheme: dark;
+    /* Keep focused/scrolled-to elements clear of the fixed mobile tab bar. */
+    scroll-padding-bottom: 96px;
     -webkit-text-size-adjust: 100%;
   }
   body {
