@@ -1,7 +1,7 @@
+import type { FieldErrors } from '@/shared/contracts'
+
 export type AppErrorKind =
   'validation' | 'unauthorized' | 'forbidden' | 'not_found' | 'conflict' | 'transient'
-
-export type FieldErrors = Record<string, string>
 
 /** Normalized error every API call rejects with. UI code only ever sees this shape. */
 export class AppError extends Error {

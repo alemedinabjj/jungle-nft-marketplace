@@ -10,3 +10,5 @@ export const apiErrorBodySchema = z.object({
 })
 
 export type ApiErrorBody = z.infer<typeof apiErrorBodySchema>
+
+export type FieldErrors = Record<string, string>

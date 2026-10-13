@@ -1,4 +1,5 @@
-export { AppError, isAppError, kindFromStatus, type AppErrorKind, type FieldErrors } from './app-error'
+export { AppError, isAppError, kindFromStatus, type AppErrorKind } from './app-error'
+export type { FieldErrors } from '@/shared/contracts'
 export {
   http,
   onUnauthorized,
