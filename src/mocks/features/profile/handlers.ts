@@ -70,6 +70,18 @@ export const profileHandlers = [
     return HttpResponse.json(toPublicUser(updated))
   }),
 
+  http.delete(`${API}/profile/avatar`, async ({ request }) => {
+    const auth = await requireUser(request)
+    if (!auth.ok) return auth.response
+    const failure = await applyScenario('profile', request)
+    if (failure) return failure
+    const updated = await mutateDb(() => {
+      auth.user.avatarUrl = null
+      return auth.user
+    })
+    return HttpResponse.json(toPublicUser(updated))
+  }),
+
   http.put(`${API}/profile/password`, async ({ request }) => {
     const auth = await requireUser(request)
     if (!auth.ok) return auth.response
