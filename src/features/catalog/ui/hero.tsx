@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from 'lucide-react'
 import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { cn } from '@/shared/lib/cn'
@@ -53,7 +54,7 @@ export function Hero() {
       aria-label="Destaques"
       className="relative overflow-hidden rounded-2xl bg-surface-card md:min-h-[450px] md:rounded-3xl"
     >
-      <div className="grid grid-cols-[minmax(0,1fr)_138px] items-center gap-2 px-4 pt-2 pb-6 md:grid-cols-[1fr_minmax(0,450px)] md:gap-10 md:py-0 md:pr-0 md:pl-10">
+      <div className="grid grid-cols-1 items-center gap-4 p-4 pb-8 md:grid-cols-[1fr_minmax(0,450px)] md:gap-10 md:py-0 md:pr-0 md:pl-10">
         <div className="flex flex-col gap-2 md:max-w-[600px] md:gap-6 md:py-11" aria-live="polite">
           <div className="flex flex-col gap-1.5 md:gap-2">
             <p className="text-caption font-medium text-text-primary md:text-body">{slide.eyebrow}</p>
@@ -69,18 +70,16 @@ export function Hero() {
             hash="catalogo"
             className="inline-flex w-fit items-center gap-1 text-caption font-bold text-text-accent uppercase md:h-10 md:w-[140px] md:justify-center md:rounded-md md:bg-primary md:text-body md:text-ink md:hover:bg-text-accent"
           >
-            Explorar{' '}
-            <span aria-hidden="true" className="md:hidden">
-              →
-            </span>
+            Explorar <ArrowRightIcon aria-hidden="true" className="size-3.5 md:hidden" />
           </Link>
         </div>
-        <div className="md:order-2">
+        <div className="order-first md:order-2">
+          {/* Mobile: wide crop on top (the LCP element); desktop: square art as in Figma. */}
           <NftImage
             image={slide.image}
-            sizes="(min-width: 768px) 450px, 138px"
+            sizes="(min-width: 768px) 450px, 92vw"
             priority
-            className="rounded-2xl md:rounded-3xl"
+            className="aspect-[16/10] rounded-2xl object-[50%_35%] md:aspect-square md:rounded-3xl"
           />
         </div>
       </div>
