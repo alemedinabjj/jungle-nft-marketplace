@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, startTransition } from 'react'
 import { createRoot } from 'react-dom/client'
 import { AppProviders } from '@/app/providers/app-providers'
 import { createQueryClient } from '@/app/query-client'
@@ -35,8 +35,12 @@ const router = createAppRouter(queryClient)
 const rootElement = document.getElementById('root')
 if (!rootElement) throw new Error('Root element #root not found')
 
-createRoot(rootElement).render(
-  <StrictMode>
-    <AppProviders queryClient={queryClient} router={router} />
-  </StrictMode>,
-)
+// The static shell is already on screen, so the first render can be a transition:
+// React time-slices it instead of blocking the main thread in one long task.
+startTransition(() => {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <AppProviders queryClient={queryClient} router={router} />
+    </StrictMode>,
+  )
+})
