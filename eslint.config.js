@@ -121,6 +121,11 @@ export default tseslint.config(
     rules: { 'react-refresh/only-export-components': 'off' },
   },
   {
+    // TanStack Router control flow: `throw redirect()` / `throw notFound()`.
+    files: ['src/routes/**/*.tsx'],
+    rules: { '@typescript-eslint/only-throw-error': 'off' },
+  },
+  {
     // The simulated backend works on fixtures it fully controls.
     files: ['src/mocks/**/*.{ts,tsx}'],
     rules: { 'no-restricted-imports': 'off', '@typescript-eslint/no-non-null-assertion': 'off' },
